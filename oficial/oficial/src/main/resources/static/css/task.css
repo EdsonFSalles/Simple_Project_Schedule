@@ -1,0 +1,126 @@
+body{
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+}
+h1{
+    font-size: 1.2em;
+}
+
+p{
+    font-size: 0.9em;
+    display: inline;
+}
+
+input, button{
+    font-family: cursive;
+    border-radius: 0px 9px 0px 10px;
+    margin: 5px;
+}
+
+#input-title{
+    width: 30%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    border: solid 0.5px black;
+    box-shadow: 10px 9px 0px 0px;
+    padding: 15px;
+}
+
+.form-div, .list-task{
+    border: solid 0.5px black;
+    padding: 5px;
+    box-shadow: 4px 5px 0px 0px;
+    margin-bottom: 35px;
+}
+
+.list-task{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: solid 0.5px black;
+    box-shadow: 2px 3px 0px 0px;
+}
+
+.task-card{
+    border: solid 1px black;
+    margin-bottom: 12px;
+    padding: 9px 12px 12px 19px;
+}
+
+select{
+    border: solid 0.5px black;
+    border-radius: 0px 9px 0px 8px;
+    background: #bfbfbf;
+    font-family: cursive;
+    margin-left: 20px;
+}
+
+.progress-container {
+    width: 60%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4a90d9;
+    border-radius: 9999px;
+    transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+.progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.progress-label[data-status="FINALIZADO"] {
+    background-color: #666666;
+    color: #155724;
+}
+
+.progress-label[data-status="EM_ANDAMENTO"] {
+    background-color: #bfbfbf;
+    color: #856404;
+}
+
+.progress-label[data-status="ATRASADO"] {
+    background-color: #666666;
+    color: #721c24;
+}
+
+.erro {
+    display: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2px 8px;
+    margin: 4px 0;
+}
+
+.erro.ativo {
+    display: inline-block;
+}
+
+input.invalido,
+select.invalido {
+    border: 2px solid #000000;
+    box-shadow: 4px 4px 0px 0px #000000;
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="../../static/css/task.css" th:href="@{/css/task.css}" >
+</head>
+<body>
+    <div class="container">
+        <Header>
+            <h1>Tabelas de tarefas</h1>
+        </Header>
+        <main>
+            <div class="form-div">
+                <form th:action="@{/principal/cadastrarTarefas}" method="post" th:object="${newTask}" novalidate id="task-form">
+                    <div id="create-form">
+                        <label>Titulo</label>
+                        <input id="input-title" type="text" name=" title" placeholder="atividade.." th:field="*{title}" required>
+                        <label>tipo</label>
+                        <select name="type">
+                            <option th:each="types : ${types}"
+                                    th:value="${types}"
+                                    th:text="${types}">
+                            </option>
+                        </select>
+                        <label>Estado</label>
+                        <select name="state">
+                            <option th:each="states : ${states}"
+                                    th:value="${states}"
+                                    th:text="${states}">
+                            </option>
+                        </select>
+                        <br>
+                        <label>Data inicio</label>
+                        <input type="date" name="dataStart" th:field="*{dataStart}">
+                        <label>Data final</label>
+                        <input type="date" name="dataEnd" th:field="*{dataEnd}">
+                    </div>
+                    <button>Adicionar mais uma</button>
+                    <p class="erro" id="erro-title"></p>
+                </form>
+            </div>
+            <div class="list-task">
+                <div th:each="task : ${task}" class="task-card"
+                     th:data-start="${task.dataStart != null ? #temporals.format(task.dataStart, 'yyyy-MM-dd') : ''}"
+                     th:data-end="${task.dataEnd != null ? #temporals.format(task.dataEnd, 'yyyy-MM-dd') : ''}"
+                     th:data-state="${task.state}">
+                    <form th:action="@{/principal/atualizarTask/{id}(id=${task.id})}" method="post">
+                        <h1 th:text="${task.title}"></h1>
+                        <p th:text="${task.type}"></p>
+                            <select name="state">
+                                <option th:each="s : ${states}"
+                                        th:value="${s}"
+                                        th:text="${s}"
+                                        th:selected="${s == task.state}">
+                                </option>
+                            </select>
+                            <button type="submit">Alterar</button>
+
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+
+                        <span class="progress-label">—</span>
+                        <p th:text="${task.dataStart != null ? #temporals.format(task.dataStart, 'dd/MM/yyyy') : '—'}"></p>
+                        <p> até </p>
+                        <p th:text="${task.dataEnd != null ? #temporals.format(task.dataEnd, 'dd/MM/yyyy') : '—'}"></p>
+                    </form>
+                    <form th:action="@{/principal/deletarTarefas/{id}(id=${task.id})}" method="post">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script th:src="@{/js/taskJS.js}"></script>
+</body>
+</html>
